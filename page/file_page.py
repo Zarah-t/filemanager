@@ -18,3 +18,15 @@ class FilePage(BaseAction):
     # 快捷方式
     shot_cut_button = By.XPATH, "快捷方式"
 
+    def click_menu(self):
+        self.click(self.menu_button)
+
+    def click_refresh(self):
+        self.click(self.refresh_button)
+
+    def click_book_mark(self):
+        self.click(self.book_mark_button)
+
+    def click_shot_cut(self):
+        self.click(self.shot_cut_button)
+
