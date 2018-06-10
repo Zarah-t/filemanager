@@ -94,3 +94,33 @@ class BaseAction:
 
     def screenshot(self, file_name):
         self.driver.get_screenshot_as_file("./screen/" + file_name + ".png")
+
+    def scroll_page_one_time(self, direction="down"):
+        window_size = self.driver.get_window_size()
+        window_height = window_size["height"]
+        window_width = window_size["width"]
+        up_y = window_height * 0.25
+        down_y = up_y * 3
+        left_x = window_width * 0.25
+        rigth_x = left_x * 3
+        center_x = window_width * 0.5
+        center_y = window_height * 0.5
+
+        if direction == "down":
+            self.driver.swipe(center_x, down_y, center_x, up_y)
+        elif direction == "up":
+            self.driver.swipe(center_x, up_y, center_x, down_y)
+        elif direction == "left":
+            self.driver.swipe(left_x, center_y, rigth_x, center_y)
+        elif direction == "right":
+            self.driver.swipe(rigth_x, center_y, left_x, center_y)
+        else:
+            raise Exception("请输入正确的direction参数")
+
+    def is_loc_exist(self, loc):
+        try:
+            self.find_element(loc)
+            return True
+        except Exception:
+            return False
+
